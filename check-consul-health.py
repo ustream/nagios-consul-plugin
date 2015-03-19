@@ -1,3 +1,4 @@
+#!/usr/bin/python
 """Usage: 
     check-consul-health.py node NODE DC
         [--addr=ADDR]
