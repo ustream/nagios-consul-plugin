@@ -18,7 +18,7 @@ Options:
 """
 
 from docopt import docopt
-import requests, json
+import requests, json, traceback, exceptions
 
 def dump(it):
     if arguments['--verbose']: print it
@@ -73,9 +73,14 @@ def processFailing(checks):
     return 2 if len(critical) else 1 if len(warning) else 0
 
 if __name__ == '__main__':
-    arguments = docopt(__doc__)
-    dump("Arguments: " + str(arguments))
-    if arguments['node']:
-        url = buildNodeUrl()
-        json = getJsonFromUrl(url)
-        exit(processFailing(json))
+    try:
+        arguments = docopt(__doc__)
+        dump("Arguments: " + str(arguments))
+        if arguments['node']:
+            url = buildNodeUrl()
+            json = getJsonFromUrl(url)
+            exit(processFailing(json))
+    except exceptions.SystemExit: raise
+    except:
+        traceback.print_exc()
+        exit(3)
