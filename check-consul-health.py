@@ -31,6 +31,8 @@ def buildNodeUrl():
 def getJsonFromUrl(url):
     r = requests.get(url)
     dump("Response: " + r.text)
+    dump("Status code: " + str(r.status_code))
+    r.raise_for_status()
     return r.json()
 
 def printCheck(check):
