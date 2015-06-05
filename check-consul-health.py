@@ -57,14 +57,14 @@ def processFailing(checks):
         print "There is no matching checks"
         return 3
 
-    namesOfChecks = lambda x: x["ServiceID"] + ":" + x["Name"]
+    checkOutput = lambda x: x["Name"] + ":" + x["Output"]
 
     if len(critical):
-        print "Critical: %d (%s)" % (len(critical), ",".join(map(namesOfChecks, critical)))
+        print "|".join(map(checkOutput, critical))
         for check in critical:
             printCheck(check)
     if len(warning):
-        print "Warning: %d (%s)" % (len(warning), ",".join(map(namesOfChecks, warning)))
+        print "|".join(map(checkOutput, warning))
         for check in warning:
             printCheck(check)
     if len(passing):
