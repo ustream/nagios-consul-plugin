@@ -50,12 +50,12 @@ def processFailing(checks):
     critical = filter(lambda x: x['Status'] == 'critical', filtered)
 
     if len(checks) == 0:
-        print "There is no matching node"
-        return 3
+        print "There is no matching node!"
+        return 1
 
     if len(filtered) == 0:
-        print "There is no matching checks"
-        return 3
+        print "There is no matching check!"
+        return 1
 
     checkOutput = lambda x: x["Name"] + ":" + x["Output"]
 
